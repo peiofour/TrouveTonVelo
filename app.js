@@ -11,8 +11,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 var ip = process.env.DB_IP;
 var port = process.env.DB_PORT;
-//var url = "mongodb://" + ip +":" + port + "/velib";
-var url = "mongodb://localhost:27017/velib";
+var url = "mongodb://" + ip +":" + port + "/velib";
 
 var index = require('./routes/index');
 
@@ -31,9 +30,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 
 
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect(url, function(err, client) {
   if (err) throw err;
-  console.log('Database Created');
+
+  const db = client.db("velib");
+
+  db.createCollection("historical", function(err, res) {
+    if (err) throw err;
+  });
+  client.close();
 });
 
 
