@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,12 +7,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
+var MongoClient = require('mongodb').MongoClient;
+
+var ip = process.env.DB_IP;
+var port = process.env.DB_PORT;
+//var url = "mongodb://" + ip +":" + port + "/velib";
+var url = "mongodb://localhost:27017/velib";
 
 var index = require('./routes/index');
-
-require('dotenv').config();
 
 var app = express();
 
@@ -18,8 +22,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,11 +30,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 
-// Connection URL
-const url = 'mongodb://localhost:27017';
 
-// Database Name
-const dbName = 'myproject';
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  console.log('Database Created');
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -52,6 +55,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(3000);
+app.listen(50000);
 
 module.exports = app;
