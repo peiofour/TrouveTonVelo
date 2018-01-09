@@ -12,3 +12,9 @@ block header
       input(type="text" value="Trouver une station...")#searchValue
 
 
+block main
+  #map
+    script
+      //function google map
+
+    script(src=`https://maps.googleapis.com/maps/api/js?key=${process.env.API_GOOGLE_MAP}&callback=initMap)`
