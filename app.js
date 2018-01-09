@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 
+require('dotenv').config();
+
 var app = express();
 
 // view engine setup
