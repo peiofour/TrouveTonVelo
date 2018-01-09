@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+
 var index = require('./routes/index');
 
 require('dotenv').config();
@@ -24,6 +27,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+
+// Connection URL
+const url = 'mongodb://localhost:27017';
+
+// Database Name
+const dbName = 'myproject';
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
