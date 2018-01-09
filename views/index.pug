@@ -1,5 +1,14 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
+block header
+  header#header
+    a(href="/")
+      h1 TrouveTonVelo.com
+
+    a(href="/about")
+      h3 About
+
+    form#search
+      input(type="text" value="Trouver une station...")#searchValue
+
+
