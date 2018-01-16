@@ -1,4 +1,5 @@
 const express = require('express');
+const controller = require('../../helpers/controllers/rankingController');
 
 const router = express.Router();
 
