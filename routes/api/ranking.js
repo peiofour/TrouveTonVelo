@@ -11,3 +11,5 @@ router.get('/:city', (request, response, next) => {
 router.get('/global', (request, response, next) => {
   response.json({ url: '/ranking/global' });
 });
+
+module.exports = router;

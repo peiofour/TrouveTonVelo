@@ -16,3 +16,5 @@ router.get('/historical/:id', (request, response, next) => {
   const id = request.params.id;
   response.json({ id });
 });
+
+module.exports = router;
