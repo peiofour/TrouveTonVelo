@@ -8,7 +8,7 @@ Application permettant de géolocaliser les stations de vélib' partout en Franc
 3. Créer un fichier `.env` et copier le contenu du fichier `.env.exemple` (Vous pouvez ensuite supprimer celui-ci)
 4. Ajouter sa clé API JCDécaux (Disponible à l'adresse : https://developer.jcdecaux.com)
 5. Ajouter sa clé Google Maps JavaScript API (Disponible à l'adresse : https://developers.google.com/maps/documentation/javascript/?hl=fr)
-6. Ajouter les informations de connexion à la base de données MongoDB
+6. Ajouter les informations de connexion à la base de données MongoDB dans le fichier `db/config.json`
 
 ## Lancement
 ```
