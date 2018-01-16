@@ -18,7 +18,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', index);
 
@@ -51,11 +50,13 @@ initDb((db) => {
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
     // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+    res.sendStatus(err.status || 500);
   });
 
-  app.listen(50000);
+  app.listen(process.env.NODE_PORT, function(){
+      console.log("API Velo-Toulouse -- Start sur le port "+ process.env.NODE_PORT);
+  });
+
 });
 
 module.exports = app;
