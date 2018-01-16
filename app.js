@@ -32,6 +32,10 @@ initDb((db) => {
     if (err) throw err;
   });
 
+  db.createCollection('ranking', (err, res) => {
+    if (err) throw err;
+  });
+
   cron.schedule('0 */15 * * * *', () => {
     console.log('running a task 15 minute');
   });
@@ -53,10 +57,9 @@ initDb((db) => {
     res.sendStatus(err.status || 500);
   });
 
-  app.listen(process.env.NODE_PORT, function(){
-      console.log("API Velo-Toulouse -- Start sur le port "+ process.env.NODE_PORT);
+  app.listen(process.env.NODE_PORT, () => {
+    console.log(`API Velo-Toulouse -- Start sur le port ${process.env.NODE_PORT}`);
   });
-
 });
 
 module.exports = app;
