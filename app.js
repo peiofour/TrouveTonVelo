@@ -10,7 +10,9 @@ const bodyParser = require('body-parser');
 const initDb = require('./db/mongo');
 const cron = require('node-cron');
 
-const index = require('./routes/index');
+const stations = require('./routes/api/stations');
+const station = require('./routes/api/station');
+const ranking = require('./routes/api/ranking');
 
 const app = express();
 
@@ -19,7 +21,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api', index);
+app.use('/api/stations', stations);
+app.use('/api/station', station);
+app.use('/api/ranking', ranking);
 
 initDb((db) => {
   global.db = db;
