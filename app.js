@@ -8,14 +8,11 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const initDb = require('./db/mongo');
+const cron = require('node-cron');
 
 const index = require('./routes/index');
 
 const app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -23,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/api', index);
 
 initDb((db) => {
   global.db = db;
@@ -34,6 +31,10 @@ initDb((db) => {
 
   db.createCollection('contracts', (err, res) => {
     if (err) throw err;
+  });
+
+  cron.schedule('0 */15 * * * *', () => {
+    console.log('running a task 15 minute');
   });
 
   // catch 404 and forward to error handler
