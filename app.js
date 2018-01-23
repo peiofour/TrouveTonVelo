@@ -13,6 +13,7 @@ const cron = require('node-cron');
 const stations = require('./routes/api/stations');
 const station = require('./routes/api/station');
 const ranking = require('./routes/api/ranking');
+const controller = require('./helpers/controllers/stationsController');
 
 const app = express();
 
@@ -40,8 +41,16 @@ initDb((db) => {
     if (err) throw err;
   });
 
-  cron.schedule('0 */15 * * * *', () => {
-    console.log('running a task 15 minute');
+  db.createCollection('historical', (err, res) => {
+    if (err) throw err;
+  });
+
+  cron.schedule('0 */5 * * * *', () => {
+    console.log('running a task 5 minutes');
+    /*
+    TO DO : Repasser à 30 minutes
+    */
+    controller.UpdateStationsListFromApi();
   });
 
   // catch 404 and forward to error handler
