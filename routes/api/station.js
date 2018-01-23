@@ -3,18 +3,28 @@ const controller = require('../../helpers/controllers/stationController');
 
 const router = express.Router();
 
-router.get('/', (request, response, next) => {
-  response.json({ url: 'Station' });
+router.get('/:contract/:id', async (request, response) => {
+  const id = request.params.id;
+
+  async function test(id) {
+    try {
+      const body = await controller.stationInfos(id);
+      return body;
+    } catch (e) {
+      return e;
+    }
+  }
+
+  response.json(await test(id));
 });
 
-router.get('/infos/:id', (request, response, next) => {
+router.put('/:contract/:id', async (request, response) => {
   const id = request.params.id;
-  response.json({ id });
-});
+  const contract = request.params.contract;
 
-router.get('/historical/:id', (request, response, next) => {
-  const id = request.params.id;
-  response.json({ id });
+  controller.addStationToDataBase(id, contract);
+
+  response.json('ok');
 });
 
 module.exports = router;
