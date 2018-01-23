@@ -3,13 +3,14 @@ const controller = require('../../helpers/controllers/stationsController');
 
 const router = express.Router();
 
-router.get('/', (request, response, next) => {
-  controller.stationsList();
-  response.json({ city: 'salut' });
+router.get('/', (request, response) => {
+  controller.getAllStations();
+  response.json('ok');
 });
 
-router.get('/:city', (request, response, next) => {
+router.get('/:city', (request, response) => {
   const city = request.params.city;
+  controller.getStationsForCity(city);
   response.json({ city });
 });
 
