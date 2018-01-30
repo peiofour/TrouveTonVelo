@@ -62,6 +62,9 @@ exports.UpdateStationsListFromApi = () => {
   });
 };
 
+/**
+ * Return every stations informations (Not historical)
+ */
 exports.getAllStations = () => {
   return new Promise((resolve, reject) => {
     db.collection('stations').find().toArray((error, result) => {
@@ -71,9 +74,38 @@ exports.getAllStations = () => {
   });
 };
 
+/**
+ * Return every stations informations of a city (Not historical)
+ * @param {string} city
+ */
 exports.getStationsForCity = (city) => {
   return new Promise((resolve, reject) => {
     db.collection('stations').find({ 'body.contract_name': capitalize(city) }).toArray((error, result) => {
+      if (error) { reject(error); }
+      resolve(result);
+    });
+  });
+};
+
+/**
+ * Return every stations informations with banking terminal (Not historical)
+ */
+exports.getStationsWithBank = () => {
+  return new Promise((resolve, reject) => {
+    db.collection('stations').find({ 'body.banking': true }).toArray((error, result) => {
+      if (error) { reject(error); }
+      resolve(result);
+    });
+  });
+};
+
+/**
+ * Return every stations informations of a city with banking terminal (Not historical)
+ * @param {string} city
+ */
+exports.getStationsWithBankForCity = (city) => {
+  return new Promise((resolve, reject) => {
+    db.collection('stations').find({ 'body.contract_name': capitalize(city), 'body.banking': true }).toArray((error, result) => {
       if (error) { reject(error); }
       resolve(result);
     });

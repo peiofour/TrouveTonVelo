@@ -31,4 +31,33 @@ router.get('/:city', async (request, response) => {
   response.json(await getStations(city));
 });
 
+router.get('/bank/', async (request, response) => {
+
+  async function getStations() {
+    try {
+      const body = await controller.getStationsWithBank();
+      return body;
+    } catch (e) {
+      return e;
+    }
+  }
+
+  response.json(await getStations());
+});
+
+router.get('/bank/:city', async (request, response) => {
+  const city = request.params.city;
+
+  async function getStations() {
+    try {
+      const body = await controller.getStationsWithBankForCity(city);
+      return body;
+    } catch (e) {
+      return e;
+    }
+  }
+
+  response.json(await getStations(city));
+});
+
 module.exports = router;
