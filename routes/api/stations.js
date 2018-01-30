@@ -31,18 +31,19 @@ router.get('/:city', async (request, response) => {
   response.json(await getStations(city));
 });
 
-router.get('/bank/', async (request, response) => {
+router.get('/bank/boolean/:value', async (request, response) => {
+  const bool = JSON.parse(request.params.value);
 
-  async function getStations() {
+  async function getStations(bool) {
     try {
-      const body = await controller.getStationsWithBank();
+      const body = await controller.getStationsWithBank(bool);
       return body;
     } catch (e) {
       return e;
     }
   }
 
-  response.json(await getStations());
+  response.json(await getStations(bool));
 });
 
 router.get('/bank/:city', async (request, response) => {

@@ -89,10 +89,11 @@ exports.getStationsForCity = (city) => {
 
 /**
  * Return every stations informations with banking terminal (Not historical)
+ * @param {boolean} bool
  */
-exports.getStationsWithBank = () => {
+exports.getStationsWithBank = (bool) => {
   return new Promise((resolve, reject) => {
-    db.collection('stations').find({ 'body.banking': true }).toArray((error, result) => {
+    db.collection('stations').find({ 'body.banking': bool }).toArray((error, result) => {
       if (error) { reject(error); }
       resolve(result);
     });
