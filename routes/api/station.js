@@ -4,12 +4,11 @@ const controller = require('../../helpers/controllers/stationController');
 const router = express.Router();
 
 router.get('/infos/:id', async (request, response) => {
-
   const id = request.params.id;
 
   async function getStation(id) {
     try {
-      const body = await controller.getStationFromDataBase(id, start, end);
+      const body = await controller.getStationInfosFromDataBase(id);
       return body;
     } catch (e) {
       return e;
@@ -39,7 +38,7 @@ router.post('/historical/:id', async (request, response) => {
 
   async function getStation(id) {
     try {
-      const body = await controller.getStationFromDataBase(id, startPeriod, endPeriod);
+      const body = await controller.getStationAllFromDataBase(id, startPeriod, endPeriod);
       return body;
     } catch (e) {
       return e;

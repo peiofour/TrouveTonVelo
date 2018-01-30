@@ -8,11 +8,11 @@ const urlApi = 'https://api.jcdecaux.com/vls/v1/';
 
 /**
  * Get station's informations from the database
- * @param {string} id
- * @param {object} start
- * @param {object} end
+ * @param {string} id : contractName_number (e.g. Valance_3)
+ * @param {object} start { "year": Integer,  "month": Integer,  "day": Integer,  "hour": Integer,  "minute": Integer }
+ * @param {object} end { "year": Integer,  "month": Integer,  "day": Integer,  "hour": Integer,  "minute": Integer }
  */
-exports.getStationFromDataBase = (id, start, end) => {
+exports.getStationAllFromDataBase = (id, start, end) => {
   return new Promise((resolve, reject) => {
 
   // Create Dates Objects
@@ -39,7 +39,19 @@ exports.getStationFromDataBase = (id, start, end) => {
         resolve(station);
       });
     });
+  });
+};
 
+/**
+ * Get only the informations of one station based on its ID
+ * @param {string} id : contractName_number (e.g. Valance_3)
+ */
+exports.getStationInfosFromDataBase = (id) => {
+  return new Promise((resolve, reject) => {
+    db.collection('stations').find({ _id: id }).toArray((error, resultInfos) => {
+      if (error) { reject(error); }
+      resolve(resultInfos);
+    });
   });
 };
 
