@@ -71,4 +71,19 @@ exports.getAllStations = () => {
   });
 };
 
-exports.getStationsForCity = (city) => {};
+exports.getStationsForCity = (city) => {
+  return new Promise((resolve, reject) => {
+    db.collection('stations').find({ 'body.contract_name': capitalize(city) }).toArray((error, result) => {
+      if (error) { reject(error); }
+      resolve(result);
+    });
+  });
+};
+
+/**
+ * Return the name with capital first letter
+ * @param {string} name
+ */
+const capitalize = (name) => {
+  return `${name.charAt(0).toUpperCase()}${name.substr(1)}`;
+};

@@ -16,10 +16,19 @@ router.get('/', async (request, response) => {
   response.json(await getStations());
 });
 
-router.get('/:city', (request, response) => {
+router.get('/:city', async (request, response) => {
   const city = request.params.city;
-  controller.getStationsForCity(city);
-  response.json({ city });
+
+  async function getStations() {
+    try {
+      const body = await controller.getStationsForCity(city);
+      return body;
+    } catch (e) {
+      return e;
+    }
+  }
+
+  response.json(await getStations(city));
 });
 
 module.exports = router;
