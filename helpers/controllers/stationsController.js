@@ -62,5 +62,13 @@ exports.UpdateStationsListFromApi = () => {
   });
 };
 
-exports.getAllStations = () => {};
+exports.getAllStations = () => {
+  return new Promise((resolve, reject) => {
+    db.collection('stations').find().toArray((error, result) => {
+      if (error) { reject(error); }
+      resolve(result);
+    });
+  });
+};
+
 exports.getStationsForCity = (city) => {};
