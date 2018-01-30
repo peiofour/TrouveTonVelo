@@ -45,11 +45,10 @@ initDb((db) => {
     if (err) throw err;
   });
 
-  cron.schedule('0 */5 * * * *', () => {
-    console.log('running a task 5 minutes');
-    /*
-    TO DO : Repasser à 30 minutes
-    */
+  cron.schedule('0 */15 * * * *', () => {
+    const date = new Date(Date.now());
+    console.log('running an update every 30 minutes : ', date.toString());
+
     controller.UpdateStationsListFromApi();
   });
 
