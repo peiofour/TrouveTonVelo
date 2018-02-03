@@ -19,7 +19,7 @@ router.get('/infos/:id', async (request, response) => {
 });
 /**
  * Gets historical of one station based on its ID
- * @param {string} id : contractName_number (e.g. Valance_3)
+ * @param {string} id : contractName_number (e.g. Valence_3)
  * &?
  * start
  * @param {string} syear :  year (ex : syear=2018 )

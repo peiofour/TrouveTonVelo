@@ -66,7 +66,7 @@ router.get('/historical/:what', async (request, response) => {
 
   async function getStations(type, period) {
     try {
-      const body = await controller.getHistoricalOfStationForPeriod(type, period);
+      const body = await controller.getHistoricalOfStationsForPeriod(type, period);
       return body;
     } catch (e) {
       return e;

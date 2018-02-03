@@ -113,19 +113,12 @@ exports.getStationsWithBankForCity = (city) => {
   });
 };
 
-exports.getAllHistoricalForPeriod = (type, period) => {
-  return new Promise((resolve, reject) => {
-    const time = getPeriod(type, period);
-    const start = new Date(time.startYear, time.startMonth, time.startDay, time.startHour, 0, 0, 0);
-    const end = new Date(time.endYear, time.endMonth, time.endDay, time.endHour, 59, 59, 0);
-    db.collection('historical').find({ 'date.timestamp': { $gte: start, $lte: end } }).toArray((error, result) => {
-      if (error) { reject(error); }
-      resolve(result);
-    });
-  });
-};
-
-exports.getHistoricalOfStationForPeriod = (type, period) => {
+/**
+ * Get stations' historical for a specific period of time
+ * @param {string} type  e.g. year|month|day|hour
+ * @param {object} period
+ */
+exports.getHistoricalOfStationsForPeriod = (type, period) => {
   return new Promise((resolve, reject) => {
     const time = getPeriod(type, period);
     const start = new Date(Date.UTC(time.startYear, time.startMonth, time.startDay, time.startHour, 0, 0, 0));
