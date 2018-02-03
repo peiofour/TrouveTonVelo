@@ -17,9 +17,9 @@ exports.getStationAllFromDataBase = (id, start, end) => {
 
   // Create Dates Objects
   // Month in date begins at 0 (e.g. January = 0)
-  const startDate = new Date(start.year, (start.month - 1), start.day, (start.hour + 1), start.minute);
+  const startDate = new Date(Date.UTC(start.year, (start.month - 1), start.day, (start.hour), start.minute));
   // To avoid issue, we search for the entire minute, that's why we add 59 seconds
-  const endDate = new Date(end.year, (start.month - 1), end.day, (end.hour + 1), end.minute, 59);
+  const endDate = new Date(Date.UTC(end.year, (start.month - 1), end.day, (end.hour), end.minute, 59));
 
 
     // Get the station we are looking for
@@ -27,8 +27,7 @@ exports.getStationAllFromDataBase = (id, start, end) => {
       if (error) { reject(error); }
 
       // Get the historical on the station we are looking for
-      db.collection('historical').find({stationId: id, 'date.timestamp': { $gte:startDate, $lte: endDate }
-    }).toArray((error, resultHistorical) => {
+      db.collection('historical').find({stationId: id, 'date.timestamp': { $gte:startDate, $lte: endDate }}).toArray((error, resultHistorical) => {
         if (error) { reject(error); }
 
         // Object that we are going to return

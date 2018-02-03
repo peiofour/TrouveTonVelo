@@ -61,4 +61,19 @@ router.get('/bank/:city', async (request, response) => {
   response.json(await getStations(city));
 });
 
+router.get('/historical/:what', async (request, response) => {
+  const what = request.params.what;
+
+  async function getStations(type, period) {
+    try {
+      const body = await controller.getHistoricalOfStationForPeriod(type, period);
+      return body;
+    } catch (e) {
+      return e;
+    }
+  }
+
+  response.json(await getStations(what, request.query));
+});
+
 module.exports = router;
