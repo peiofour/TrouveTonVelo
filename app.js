@@ -51,10 +51,10 @@ initDb((db) => {
     stationscontroller.UpdateStationsListFromApi();
   });
 
-  cron.schedule('0 0 18 * * 6', () => {
+  cron.schedule('0 0 19 * * 7', () => {
     const d = Date();
     const date = new Date(d.valueOf());
-    console.log('running an update every Sundays at 6pm : ', date.toString());
+    console.log('running an update every Sundays at 6pm (UTC) : ', date.toString());
 
     rankingController.UpdateRank(date);
   });
