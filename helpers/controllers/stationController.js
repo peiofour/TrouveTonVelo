@@ -1,8 +1,6 @@
 const request = require('request');
 const initDb = require('../../db/mongo');
 
-const MongoClient = require('mongodb').MongoClient;
-
 const apiKey = process.env.API_JCD;
 const urlApi = 'https://api.jcdecaux.com/vls/v1/';
 

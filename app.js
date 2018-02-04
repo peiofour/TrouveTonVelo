@@ -13,6 +13,7 @@ const cron = require('node-cron');
 const stations = require('./routes/api/stations');
 const station = require('./routes/api/station');
 const ranking = require('./routes/api/ranking');
+const city = require('./routes/api/city');
 const stationscontroller = require('./helpers/controllers/stationsController');
 const rankingController = require('./helpers/controllers/rankingController');
 const app = express();
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use('/api/stations', stations);
 app.use('/api/station', station);
 app.use('/api/ranking', ranking);
+app.use('/api/city', city);
 
 initDb((db) => {
   global.db = db;
