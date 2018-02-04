@@ -47,3 +47,16 @@ exports.UpdateRank = (date) => {
         });
     });
 };
+
+/**
+ * Get ranking data for a specific city
+ * @param {string} city
+ */
+exports.getRankForCity = (city) => {
+    return new Promise((resolve, reject) => {
+        db.collection('ranking').find({ city: city }).toArray((error, result) => {
+            if (error) { reject(error); }
+            resolve(result);
+        });
+    });
+};
