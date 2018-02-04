@@ -31,4 +31,19 @@ router.get('/global', async (request, response, next) => {
   response.json(await getAll());
 });
 
+router.get('/station/:id', async (request, response, next) => {
+  const id = request.params.id;
+
+  async function getStation(id) {
+    try {
+      const body = await controller.getRankForStation(id);
+      return body;
+    } catch (e) {
+      return e;
+    }
+  }
+
+  response.json(await getStation(id));
+});
+
 module.exports = router;

@@ -66,6 +66,19 @@ exports.getRankForCity = (city) => {
 };
 
 /**
+ * Get ranking data for a specific station
+ * @param {string} id
+ */
+exports.getRankForStation = (id) => {
+    return new Promise((resolve, reject) => {
+        db.collection('ranking').find({ stationId: id }).toArray((error, result) => {
+            if (error) { reject(error); }
+            resolve(result);
+        });
+    });
+};
+
+/**
  * Get ranking data for every station
  */
 exports.getRank = () => {
