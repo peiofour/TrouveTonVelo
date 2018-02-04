@@ -1,5 +1,6 @@
 const request = require('request');
 const initDb = require('../../db/mongo');
+const helper = require('../appHelper');
 
 /**
  * Add informations on Stations for the ranking part like available bikes and places Rates
@@ -58,7 +59,7 @@ exports.UpdateRank = (date) => {
  */
 exports.getRankForCity = (city) => {
     return new Promise((resolve, reject) => {
-        db.collection('ranking').find({ city: capitalize(city) }).toArray((error, result) => {
+        db.collection('ranking').find({ city: helper.capitalize(city) }).toArray((error, result) => {
             if (error) { reject(error); }
             resolve(result);
         });
@@ -89,11 +90,3 @@ exports.getRank = () => {
         });
     });
 };
-
-/**
- * Return the name with capital first letter
- * @param {string} name
- */
-const capitalize = (name) => {
-    return `${name.charAt(0).toUpperCase()}${name.substr(1)}`;
-  };
