@@ -15,6 +15,21 @@ router.get('/all', async (request, response, next) => {
     }
 
     response.json(await getCities());
-  });
+});
+
+router.get('/single/:name', async (request, response, next) => {
+    const name = request.params.name;
+
+    async function getCity(city) {
+      try {
+        const body = await controller.getCityFromDatabase(city);
+        return body;
+      } catch (e) {
+        return e;
+      }
+    }
+
+    response.json(await getCity(name));
+});
 
 module.exports = router;

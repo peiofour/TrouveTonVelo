@@ -6,11 +6,24 @@ const apiKey = process.env.API_JCD;
 const urlApi = 'https://api.jcdecaux.com/vls/v1/';
 
 /**
- * Returns cities informations
+ * Returns cities' informations
  */
 exports.getCitiesFromDatabase = () => {
     return new Promise((resolve, reject) => {
         db.collection('contracts').find().toArray((error, result) => {
+            if (error) { reject(error); }
+            resolve(result);
+        });
+    });
+};
+
+/**
+ * Returns city's informations
+ * @param {string} city
+ */
+exports.getCityFromDatabase = (city) => {
+    return new Promise((resolve, reject) => {
+        db.collection('contracts').find({ city: helper.capitalize(city) }).toArray((error, result) => {
             if (error) { reject(error); }
             resolve(result);
         });
