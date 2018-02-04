@@ -13,8 +13,8 @@ const cron = require('node-cron');
 const stations = require('./routes/api/stations');
 const station = require('./routes/api/station');
 const ranking = require('./routes/api/ranking');
-const controller = require('./helpers/controllers/stationsController');
-
+const stationscontroller = require('./helpers/controllers/stationsController');
+const rankingController = require('./helpers/controllers/rankingController');
 const app = express();
 
 app.use(logger('dev'));
@@ -45,11 +45,18 @@ initDb((db) => {
     if (err) throw err;
   });
 
-  cron.schedule('0 */15 * * * *', () => {
+  cron.schedule('0 */30 * * * *', () => {
     const date = new Date(Date.now());
     console.log('running an update every 30 minutes : ', date.toString());
+    stationscontroller.UpdateStationsListFromApi();
+  });
 
-    controller.UpdateStationsListFromApi();
+  cron.schedule('0 0 18 * * 6', () => {
+    const d = Date();
+    const date = new Date(d.valueOf());
+    console.log('running an update every Sundays at 6pm : ', date.toString());
+
+    rankingController.UpdateRank(date);
   });
 
   // catch 404 and forward to error handler
