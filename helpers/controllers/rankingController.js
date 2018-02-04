@@ -39,6 +39,7 @@ exports.UpdateRank = (date) => {
                     endDate: end,
                 };
 
+                // Delete data because we only want the rank for the previous week
                 db.collection('ranking').deleteOne({ stationId: station._id }, (e, res) => {
                     if (e) throw e;
                     // Insert data into ranking collection
@@ -58,6 +59,18 @@ exports.UpdateRank = (date) => {
 exports.getRankForCity = (city) => {
     return new Promise((resolve, reject) => {
         db.collection('ranking').find({ city: city }).toArray((error, result) => {
+            if (error) { reject(error); }
+            resolve(result);
+        });
+    });
+};
+
+/**
+ * Get ranking data for every station
+ */
+exports.getRank = () => {
+    return new Promise((resolve, reject) => {
+        db.collection('ranking').find().toArray((error, result) => {
             if (error) { reject(error); }
             resolve(result);
         });

@@ -3,7 +3,7 @@ const controller = require('../../helpers/controllers/rankingController');
 
 const router = express.Router();
 
-router.get('/:city', async (request, response, next) => {
+router.get('/city/:city', async (request, response, next) => {
   const city = request.params.city;
 
   async function getRank(city) {
@@ -18,8 +18,17 @@ router.get('/:city', async (request, response, next) => {
   response.json(await getRank(city));
 });
 
-router.get('/global', (request, response, next) => {
-  response.json({ url: '/ranking/global' });
+router.get('/global', async (request, response, next) => {
+  async function getAll() {
+    try {
+      const body = await controller.getRank();
+      return body;
+    } catch (e) {
+      return e;
+    }
+  }
+
+  response.json(await getAll());
 });
 
 module.exports = router;
