@@ -16,6 +16,7 @@ const ranking = require('./routes/api/ranking');
 const city = require('./routes/api/city');
 const stationscontroller = require('./helpers/controllers/stationsController');
 const rankingController = require('./helpers/controllers/rankingController');
+const cityController = require('./helpers/controllers/cityController');
 const app = express();
 
 app.use(logger('dev'));
@@ -59,6 +60,12 @@ initDb((db) => {
     console.log('running an update every Sundays at 6pm (UTC) : ', date.toString());
 
     rankingController.UpdateRank(date);
+  });
+
+  cron.schedule('0 45 23 * * *', () => {
+    const date = new Date(Date.now());
+    console.log('running a cities infos update every day at 23:45 : ', date.toString());
+    cityController.updateInfos();
   });
 
   // catch 404 and forward to error handler
