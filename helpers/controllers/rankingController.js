@@ -39,9 +39,12 @@ exports.UpdateRank = (date) => {
                     endDate: end,
                 };
 
-                // Insert data into ranking collection
-                db.collection('ranking').insertOne(object, (er, res) => {
-                    if (er) throw er;
+                db.collection('ranking').deleteOne({ stationId: station._id }, (e, res) => {
+                    if (e) throw e;
+                    // Insert data into ranking collection
+                    db.collection('ranking').insertOne(object, (er, res) => {
+                        if (er) throw er;
+                    });
                 });
             });
         });
