@@ -14,20 +14,26 @@ const stations = require('./routes/api/stations');
 const station = require('./routes/api/station');
 const ranking = require('./routes/api/ranking');
 const city = require('./routes/api/city');
+const wiki = require('./routes/wiki/wiki');
+
 const stationscontroller = require('./helpers/controllers/stationsController');
 const rankingController = require('./helpers/controllers/rankingController');
 const cityController = require('./helpers/controllers/cityController');
 const app = express();
 
+app.set('view engine', 'ejs');
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use('/static', express.static(__dirname + '/public'));
 
 app.use('/api/stations', stations);
 app.use('/api/station', station);
 app.use('/api/ranking', ranking);
 app.use('/api/city', city);
+app.use('/api/wiki', wiki);
 
 initDb((db) => {
   global.db = db;

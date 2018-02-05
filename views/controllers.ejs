@@ -1,0 +1,179 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<div class="container-fluid">
+    <h1 class="page_name col-12">Controlleurs</h1>
+
+    <h2>cityController</h2>
+    <div class="controller">
+        <h3 class="method">getCitiesFromDatabase()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li>Aucun</li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Cherche dans la collection "contracts" les informations sur toutes les villes.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Array]</span> ou <span class="type">[Empty]</span></p>
+
+        <h3 class="method">getCityFromDatabase()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">[String]</span> <span class="parameter">city</span> <span class="parameter_description">Nom de la ville, exemple : Toulouse</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Cherche dans la collection "contracts" les informations sur une ville donnée.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Array]</span> ou <span class="type">[Empty]</span></p>
+
+        <h3 class="method">updateInfos()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li>Aucun</li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Va mettre à jour la collection "contracts".</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text">Rien</p>
+    </div>
+
+
+    <hr>
+    <h2>rankingController</h2>
+    <div class="controller">
+        <h3 class="method">getRank()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li>Aucun</li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Cherche dans la collection "ranking" les taux de disponibiltés des vélos et des emplacements libres pour toutes les stations.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Array]</span> ou <span class="type">[Empty]</span></p>
+
+        <h3 class="method">getRankForCity()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">[String]</span> <span class="parameter">city</span> <span class="parameter_description">Nom de la ville, exemple : Toulouse</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Cherche dans la collection "ranking" les taux de disponibiltés des vélos et des emplacements libres pour toutes les stations d'une ville donnée.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Array]</span> ou <span class="type">[Empty]</span></p>
+
+        <h3 class="method">getRankForStation()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">[String]</span> <span class="parameter">id</span> <span class="parameter_description">Nom de la station, exemple : Toulouse_55</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Cherche dans la collection "ranking" les taux de disponibiltés des vélos et des emplacements libres pour une station donnée.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Array]</span> ou <span class="type">[Empty]</span></p>
+
+        <h3 class="method">UpdateRank()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">[Date]</span> <span class="parameter">date</span> <span class="parameter_description">Date au format UTC : Sun, 04 Feb 2018 18:00:00 GMT</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Met à jour les informations de la collection "ranking". Cette méthode est appelée dans un des CronJobs.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text">Rien</p>
+    </div>
+
+    <hr>
+    <h2>stationController</h2>
+    <div class="controller">
+        <h3 class="method">getStationAllFromDataBase()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">[String]</span> <span class="parameter">id</span> <span class="parameter_description">Nom de la station, exemple : Toulouse_55</span></li>
+                <li><span class="type">[Object]</span> <span class="parameter">start</span> <span class="parameter_description">{ "year": 2018,  "month": 2,  "day": 25,  "hour": 10,  "minute": 30 }</span></li>
+                <li><span class="type">[Object]</span> <span class="parameter">end</span> <span class="parameter_description">{ "year": 2018,  "month": 2,  "day": 25,  "hour": 18,  "minute": 30 }</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Cherche dans la collection "stations" les informations sur celle donnée, ainsi que son historique sur une période donnée.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Array]</span> ou <span class="type">[Empty]</span></p>
+
+        <h3 class="method">getStationInfosFromDataBase()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">[String]</span> <span class="parameter">id</span> <span class="parameter_description">Nom de la station, exemple : Toulouse_55</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Cherche dans la collection "stations" les informations sur celle donnée.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Array]</span> ou <span class="type">[Empty]</span></p>
+    </div>
+
+    <hr>
+    <h2>stationsController</h2>
+    <div class="controller">
+        <h3 class="method">getAllStations()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li>Aucun</li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Cherche dans la collection "stations" toutes les informations pour toutes les stations.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Array]</span> ou <span class="type">[Empty]</span></p>
+
+        <h3 class="method">getStationsForCity()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">[String]</span> <span class="parameter">city</span> <span class="parameter_description">Nom de la ville, exemple : Toulouse</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Cherche dans la collection "stations" toutes les informations des stations d'une ville donnée.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Array]</span> ou <span class="type">[Empty]</span></p>
+
+        <h3 class="method">getStationsWithBank()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">[Boolean]</span> <span class="parameter">bool</span> <span class="parameter_description">true |false</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les stations qui possède ou non un terminal bancaire.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Array]</span> ou <span class="type">[Empty]</span></p>
+
+        <h3 class="method">getStationsWithBankForCity()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">[String]</span> <span class="parameter">city</span> <span class="parameter_description">Nom de la ville, exemple : Toulouse</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les stations qui possède un terminal bancaire pour une ville donnée.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Array]</span> ou <span class="type">[Empty]</span></p>
+
+        <h3 class="method">getHistoricalOfStationsForPeriod()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">[String]</span> <span class="parameter">type</span> <span class="parameter_description">year | month | day | hour</span></li>
+                <li><span class="type">[String]</span> <span class="parameter">period</span> <span class="parameter_description">{ "year": 2018,  "month": 2,  "day": 25,  "hour": 10}, Si "type" vaut hour, il faut préciser l'heure que l'on souhaite avoir</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne l'historique de toutes les stations pour une période donnée (Attention très gourmand en ressources !!!!).</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Array]</span> ou <span class="type">[Empty]</span></p>
+
+        <h3 class="method">UpdateStationsListFromApi()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li>Aucun</li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Requête l'API JCDécaux et met à jour la collection "stations".</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text">Rien</p>
+    </div>
+</div>
