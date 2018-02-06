@@ -1,0 +1,34 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<div class="container-fluid">
+    <h1 class="page_name col-12">Helpers</h1>
+    <h2>#1</h2>
+    <div class="controller">
+        <h3 class="method">capitalize()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">[String]</span> <span class="parameter">name</span> <span class="parameter_description">String en minuscule, exemple : "toulouse".</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Va retourner la String avec la première lettre en majuscule</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[String]</span></p>
+
+        <h3 class="method">getPeriod()</h3>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">[String]</span> <span class="parameter">type</span> <span class="parameter_description">Periode souhaitée : year | month | day | hour</span></li>
+                <li><span class="type">[Object]</span> <span class="parameter">period</span> <span class="parameter_description">{ "year": 2018, "month": 2, "day": 25, "hour": 10}, Si "type" vaut hour, il faut préciser l'heure que l'on souhaite avoir</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne un objet qui permettra de remplir le constructeur d'une date de début et d'une date de fin.</p>
+            <div class="return_title">Retour :</div>
+            <p class="return_text"><span class="type">[Object]</span></p>
+
+    </div>
+</div>

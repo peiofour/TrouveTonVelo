@@ -77,3 +77,11 @@ li {
     font-size: 17px;
     font-style: italic;
 }
+
+.console {
+    font-size: 17px;
+    padding: 15px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border-left: 8px solid rgb(29, 167, 98);
+}

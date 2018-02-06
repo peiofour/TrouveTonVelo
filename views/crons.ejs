@@ -1,0 +1,49 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<div class="container-fluid">
+    <h1 class="page_name col-12">Cron</h1>
+
+    <h2>#1</h2>
+    <div class="controller">
+        <h3 class="method">Toutes les 30 minutes</h3>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Appelle une méthode qui va mettre à jour la collection "stations" à partir de l'API JCDécaux.</p>
+            <div class="params">Méthodes appelées :</div>
+            <ul>
+                <li><span class="type">stationsController.UpdateStationsListFromApi()</span></li>
+            </ul>
+            <div class="return_title">Log :</div>
+            <p class="console">running an update every 30 minutes : Mon Feb 05 2018 22:30:00 GMT+0100 (Paris, Madrid)</p>
+    </div>
+
+    <h2>#2</h2>
+    <div class="controller">
+        <h3 class="method">Tous les jours à 23h45</h3>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Appelle une méthode qui va mettre à jour la collection "contracts" à partir de l'API JCDécaux.</p>
+            <div class="params">Méthodes appelées :</div>
+            <ul>
+                <li><span class="type">cityController.updateInfos()</span></li>
+            </ul>
+            <div class="return_title">Log :</div>
+            <p class="console">running a cities infos update every day at 23:45 : Mon Feb 06 2018 23:45:00 GMT+0100 (Paris, Madrid)</p>
+    </div>
+
+    <h2>#3</h2>
+    <div class="controller">
+        <h3 class="method">Tous les dimanche à 18h</h3>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Appelle une méthode qui va mettre à jour la collection "ranking" à partir la collection "historical".</p>
+            <div class="params">Méthodes appelées :</div>
+            <ul>
+                <li><span class="type">rankingController.UpdateRank(date)</span></li>
+            </ul>
+            <div class="return_title">Log :</div>
+            <p class="console">running an update every Sundays at 6pm (UTC) : Mon Feb 04 2018 19:00:00 GMT+0100 (Paris, Madrid)</p>
+    </div>
+</div>
