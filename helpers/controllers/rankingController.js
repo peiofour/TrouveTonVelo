@@ -72,7 +72,7 @@ exports.getRankForCity = (city) => {
  */
 exports.getRankForStation = (id) => {
     return new Promise((resolve, reject) => {
-        db.collection('ranking').find({ stationId: id }).toArray((error, result) => {
+        db.collection('ranking').find({ stationId: helper.capitalize(id) }).toArray((error, result) => {
             if (error) { reject(error); }
             resolve(result);
         });

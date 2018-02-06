@@ -1,5 +1,6 @@
 const request = require('request');
 const initDb = require('../../db/mongo');
+const helper = require('../appHelper');
 
 const apiKey = process.env.API_JCD;
 const urlApi = 'https://api.jcdecaux.com/vls/v1/';
@@ -46,7 +47,7 @@ exports.getStationAllFromDataBase = (id, start, end) => {
  */
 exports.getStationInfosFromDataBase = (id) => {
   return new Promise((resolve, reject) => {
-    db.collection('stations').find({ _id: id }).toArray((error, resultInfos) => {
+    db.collection('stations').find({ _id: helper.capitalize(id) }).toArray((error, resultInfos) => {
       if (error) { reject(error); }
       resolve(resultInfos);
     });
