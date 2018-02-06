@@ -1,0 +1,590 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="/static/prism.css"> -->
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/prism.js"></script>
+</head>
+
+
+<div class="container-fluid">
+    <a class="return" href="/api/wiki"><- Retour au sommaire</a>
+    <h1 class="page_name col-12">Routes</h1>
+
+    <h2>City : /api/city</h2>
+    <div class="controller">
+        <h3 class="method">/api/city/all <span>[GET]</span></h3>
+            <div class="link">Lien : <a target="_blank" href="https://github.com/peiofour/TrouveTonVeloServer/blob/d021890b419b7072617ba559418b125220560d0a/routes/api/city.js#L6">github</a></div>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li>Aucun</li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les informations sur toutes les villes enregistrées dans la collection "contracts".</p>
+            <div class="description_title">Exemple :</div>
+            <p class="example">localhost:3000/api/city/all</p>
+            <div class="return_title">Retour : <span class="type">[JSON]</span></div>
+            <pre><code class="language-json">
+                [
+                    {
+                        "_id": "5a778ceee082f517249aa9d0",
+                        "city": "Mulhouse",
+                        "stationCounter": 40,
+                        "bikesCounter": 609,
+                        "bankingCounter": 21
+                    },
+                    ...
+                    {
+                        "_id": "5a778ceee082f517249aa9cf",
+                        "city": "Luxembourg",
+                        "stationCounter": 74,
+                        "bikesCounter": 1390,
+                        "bankingCounter": 74
+                    }
+                ]
+            </code></pre>
+
+        <h3 class="method">/api/city/single/:name <span>[GET]</span></h3>
+            <div class="link">Lien : <a href="https://github.com/peiofour/TrouveTonVeloServer/blob/d021890b419b7072617ba559418b125220560d0a/routes/api/city.js#L20">github</a></div>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">:name</span> <span class="parameter_description">Nom d'une ville, exemple : "toulouse"</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les informations d'une ville enregistrées dans la collection "contracts".</p>
+            <div class="description_title">Exemple :</div>
+            <p class="example">localhost:3000/api/city/single/toulouse</p>
+            <div class="return_title">Retour : <span class="type">[JSON]</span></div>
+            <pre><code class="language-json">
+                [
+                    {
+                        "_id": "5a778ceee082f517249aa9e1",
+                        "city": "Toulouse",
+                        "stationCounter": 276,
+                        "bikesCounter": 5419,
+                        "bankingCounter": 276
+                    }
+                ]
+            </code></pre>
+    </div>
+
+    <h2>Ranking : /api/ranking</h2>
+    <div class="controller">
+        <h3 class="method">/api/ranking/city/:city <span>[GET]</span></h3>
+            <div class="link">Lien : <a href="https://github.com/peiofour/TrouveTonVeloServer/blob/d021890b419b7072617ba559418b125220560d0a/routes/api/ranking.js#L6">github</a></div>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">:city</span> <span class="parameter_description">Nom d'une ville, exemple : "toulouse"</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les taux de disponibilté des vélos et des emplacements sur la semaine passée pour les stations d'une ville donnée.</p>
+            <div class="description_title">Exemple :</div>
+            <p class="example">localhost:3000/api/ranking/city/toulouse</p>
+            <div class="return_title">Retour : <span class="type">[JSON]</span></div>
+            <pre><code class="language-json">
+                [
+                    {
+                        "_id": "5a774beb925cd831683783b9",
+                        "stationId": "Toulouse_40",
+                        "city": "Toulouse",
+                        "availableBikesRate": 49.45,
+                        "availablePlacesRate": 49.93,
+                        "startDate": "2018-01-28T18:04:00.000Z",
+                        "endDate": "2018-02-04T18:04:00.000Z"
+                    },
+                    ...
+                    {
+                        "_id": "5a774beb925cd831683783ba",
+                        "stationId": "Toulouse_25",
+                        "city": "Toulouse",
+                        "availableBikesRate": 52.1,
+                        "availablePlacesRate": 47.44,
+                        "startDate": "2018-01-28T18:04:00.000Z",
+                        "endDate": "2018-02-04T18:04:00.000Z"
+                    }
+                ]
+            </code></pre>
+
+        <h3 class="method">/api/ranking/global <span>[GET]</span></h3>
+            <div class="link">Lien : <a href="https://github.com/peiofour/TrouveTonVeloServer/blob/d021890b419b7072617ba559418b125220560d0a/routes/api/ranking.js#L21">github</a></div>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li>Aucun</li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les taux de disponibilté des vélos et des emplacements sur la semaine passée pour toutes les stations.</p>
+            <div class="description_title">Exemple :</div>
+            <p class="example">localhost:3000/api/ranking/global</p>
+            <div class="return_title">Retour : <span class="type">[JSON]</span></div>
+            <pre><code class="language-json">
+                [
+                    {
+                        "_id": "5a774bea925cd831683783b1",
+                        "stationId": "Cergy-Pontoise_54904",
+                        "city": "Cergy-Pontoise",
+                        "availableBikesRate": 26.68,
+                        "availablePlacesRate": 72.95,
+                        "startDate": "2018-01-28T18:04:00.000Z",
+                        "endDate": "2018-02-04T18:04:00.000Z"
+                    },
+                    ...
+                    {
+                        "_id": "5a774bea925cd831683783b2",
+                        "stationId": "Valence_246",
+                        "city": "Valence",
+                        "availableBikesRate": 24.65,
+                        "availablePlacesRate": 74.98,
+                        "startDate": "2018-01-28T18:04:00.000Z",
+                        "endDate": "2018-02-04T18:04:00.000Z"
+                    }
+                ]
+            </code></pre>
+
+        <h3 class="method">/api/ranking/station/:id <span>[GET]</span></h3>
+            <div class="link">Lien : <a href="https://github.com/peiofour/TrouveTonVeloServer/blob/d021890b419b7072617ba559418b125220560d0a/routes/api/ranking.js#L34">github</a></div>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">:id</span> <span class="parameter_description">Nom d'une station, exemple : "toulouse_55"</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les taux de disponibilté des vélos et des emplacements sur la semaine passée pour une station donnée.</p>
+            <div class="description_title">Exemple :</div>
+            <p class="example">localhost:3000/api/ranking/station/toulouse_55</p>
+            <div class="return_title">Retour : <span class="type">[JSON]</span></div>
+            <pre><code class="language-json">
+                [
+                    {
+                        "_id": "5a774d57925cd83168378d0e",
+                        "stationId": "Toulouse_55",
+                        "city": "Toulouse",
+                        "availableBikesRate": 29.69,
+                        "availablePlacesRate": 69.79,
+                        "startDate": "2018-01-28T18:04:00.000Z",
+                        "endDate": "2018-02-04T18:04:00.000Z"
+                    }
+                ]
+            </code></pre>
+    </div>
+
+    <h2>Station : /api/station</h2>
+    <div class="controller">
+        <h3 class="method">/api/station/infos/:id <span>[GET]</span></h3>
+            <div class="link">Lien : <a href="https://github.com/peiofour/TrouveTonVeloServer/blob/d021890b419b7072617ba559418b125220560d0a/routes/api/station.js#L6">github</a></div>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">:id</span> <span class="parameter_description">Nom d'une station, exemple : "toulouse_55"</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les informations pour une station donnée.</p>
+            <div class="description_title">Exemple :</div>
+            <p class="example">localhost:3000/api/station/infos/toulouse_55</p>
+            <div class="return_title">Retour : <span class="type">[JSON]</span></div>
+            <pre><code class="language-json">
+                    [
+                        {
+                            "_id": "Toulouse_55",
+                            "body": {
+                                "number": 55,
+                                "name": "00055 - ST SERNIN G. ARNOULT",
+                                "address": "2 RUE GATIEN ARNOULT",
+                                "position": {
+                                    "lat": 43.608951960496405,
+                                    "lng": 1.441003598726198
+                                },
+                                "banking": true,
+                                "bonus": false,
+                                "status": "OPEN",
+                                "contract_name": "Toulouse",
+                                "bike_stands": 15,
+                                "available_bike_stands": 4,
+                                "available_bikes": 11,
+                                "last_update": 1517912605000
+                            }
+                        }
+                    ]
+            </code></pre>
+
+        <h3 class="method">/api/station/historical/:id <span>[GET]</span></h3>
+            <div class="link">Lien : <a href="https://github.com/peiofour/TrouveTonVeloServer/blob/d021890b419b7072617ba559418b125220560d0a/routes/api/station.js#L37">github</a></div>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">:id</span> <span class="parameter_description">Nom d'une station, exemple : "toulouse_55"</span></li>
+                <li><span class="type">syear</span> <span class="parameter_description">Année date de départ, exemple : 2018</span></li>
+                <li><span class="type">smonth</span> <span class="parameter_description">Mois date de départ, exemple : 1</span></li>
+                <li><span class="type">sday</span> <span class="parameter_description">jour date de départ, exemple : 31</span></li>
+                <li><span class="type">shour</span> <span class="parameter_description">Heure date de départ, exemple : 9</span></li>
+                <li><span class="type">sminute</span> <span class="parameter_description">Minute date de départ, exemple : 0</span></li>
+                <li><span class="type">eyear</span> <span class="parameter_description">Année date de fin, exemple : 2018</span></li>
+                <li><span class="type">emonth</span> <span class="parameter_description">Mois date de fin, exemple : 1</span></li>
+                <li><span class="type">eday</span> <span class="parameter_description">jour date de fin, exemple : 31</span></li>
+                <li><span class="type">ehour</span> <span class="parameter_description">Heure date de fin, exemple : 10</span></li>
+                <li><span class="type">eminute</span> <span class="parameter_description">Minute date de fin, exemple : 0</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les informations pour une station donnée, ainsi que l'historique pour une période donnée.</p>
+            <div class="description_title">Exemple :</div>
+            <p class="example">localhost:3000/api/station/historical/Toulouse_55?syear=2018&smonth=1&sday=31&shour=9&sminute=0&eyear=2018&emonth=1&eday=31&ehour=10&eminute=0</p>
+            <div class="return_title">Retour : <span class="type">[JSON]</span></div>
+            <pre><code class="language-json">
+                    {
+                        "infos": [
+                            {
+                                "_id": "Toulouse_55",
+                                "body": {
+                                    "number": 55,
+                                    "name": "00055 - ST SERNIN G. ARNOULT",
+                                    "address": "2 RUE GATIEN ARNOULT",
+                                    "position": {
+                                        "lat": 43.608951960496405,
+                                        "lng": 1.441003598726198
+                                    },
+                                    "banking": true,
+                                    "bonus": false,
+                                    "status": "OPEN",
+                                    "contract_name": "Toulouse",
+                                    "bike_stands": 15,
+                                    "available_bike_stands": 4,
+                                    "available_bikes": 11,
+                                    "last_update": 1517912605000
+                                }
+                            }
+                        ],
+                        "historical": [
+                            {
+                                "_id": "5a718591f0fafc0cd4ccbd10",
+                                "stationId": "Toulouse_55",
+                                "status": "OPEN",
+                                "bike_stands": 15,
+                                "available_bike_stands": 3,
+                                "available_bikes": 12,
+                                "date": {
+                                    "year": 2018,
+                                    "month": 0,
+                                    "day": 31,
+                                    "hour": 9,
+                                    "minute": 0,
+                                    "timestamp": "2018-01-31T09:00:00.000Z"
+                                }
+                            },
+                            ...
+                            {
+                                "_id": "5a7193a1f0fafc0cd4cce420",
+                                "stationId": "Toulouse_55",
+                                "status": "OPEN",
+                                "bike_stands": 15,
+                                "available_bike_stands": 6,
+                                "available_bikes": 9,
+                                "date": {
+                                    "year": 2018,
+                                    "month": 0,
+                                    "day": 31,
+                                    "hour": 10,
+                                    "minute": 0,
+                                    "timestamp": "2018-01-31T10:00:00.000Z"
+                                }
+                            }
+                        ]
+                    }
+            </code></pre>
+    </div>
+
+    <h2>Stations : /api/stations</h2>
+    <div class="controller">
+        <h3 class="method">/api/stations <span>[GET]</span></h3>
+            <div class="link">Lien : <a href="https://github.com/peiofour/TrouveTonVeloServer/blob/d021890b419b7072617ba559418b125220560d0a/routes/api/stations.js#L6">github</a></div>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li>Aucun</li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les informations de toutes les stations.</p>
+            <div class="description_title">Exemple :</div>
+            <p class="example">localhost:3000/api/stations</p>
+            <div class="return_title">Retour : <span class="type">[JSON]</span></div>
+            <pre><code class="language-json">
+                    [
+                        {
+                            "_id": "Seville_260",
+                            "body": {
+                                "number": 260,
+                                "name": "260_REVOLTOSA",
+                                "address": "Aproximado Parque Amate",
+                                "position": {
+                                    "lat": 37.377023215492045,
+                                    "lng": -5.947035486155897
+                                },
+                                "banking": true,
+                                "bonus": false,
+                                "status": "OPEN",
+                                "contract_name": "Seville",
+                                "bike_stands": 20,
+                                "available_bike_stands": 0,
+                                "available_bikes": 20,
+                                "last_update": 1517574843000
+                            }
+                        },
+                        ...
+                        {
+                            "_id": "Lund_9",
+                            "body": {
+                                "number": 9,
+                                "name": "UNIVERSITETSSJUKHUSET",
+                                "address": "",
+                                "position": {
+                                    "lat": 55.7128579364781,
+                                    "lng": 13.1967929005623
+                                },
+                                "banking": true,
+                                "bonus": false,
+                                "status": "OPEN",
+                                "contract_name": "Lund",
+                                "bike_stands": 30,
+                                "available_bike_stands": 26,
+                                "available_bikes": 4,
+                                "last_update": 1513853310000
+                            }
+                        }
+                    ]
+            </code></pre>
+        <h3 class="method">/api/stations/:city <span>[GET]</span></h3>
+            <div class="link">Lien : <a href="https://github.com/peiofour/TrouveTonVeloServer/blob/d021890b419b7072617ba559418b125220560d0a/routes/api/stations.js#L19">github</a></div>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">:city</span> <span class="parameter_description">Nom d'une ville, exemple : "toulouse"</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les stations d'une ville donnée.</p>
+            <div class="description_title">Exemple :</div>
+            <p class="example">localhost:3000/api/stations/toulouse</p>
+            <div class="return_title">Retour : <span class="type">[JSON]</span></div>
+            <pre><code class="language-json">
+                [
+                    {
+                        "_id": "Toulouse_29",
+                        "body": {
+                            "number": 29,
+                            "name": "00029 - VALADE",
+                            "address": "31 RUE VALADE",
+                            "position": {
+                                "lat": 43.605071904633625,
+                                "lng": 1.437032051956223
+                            },
+                            "banking": true,
+                            "bonus": false,
+                            "status": "OPEN",
+                            "contract_name": "Toulouse",
+                            "bike_stands": 19,
+                            "available_bike_stands": 17,
+                            "available_bikes": 0,
+                            "last_update": 1517918126000
+                        }
+                    },
+                    ...
+                    {
+                        "_id": "Toulouse_156",
+                        "body": {
+                            "number": 156,
+                            "name": "00156 - METRO EMPALOT",
+                            "address": "38 AV JEAN MOULIN FACE DEBOUCHE RUE DE CANNES",
+                            "position": {
+                                "lat": 43.579737115748195,
+                                "lng": 1.441783289134449
+                            },
+                            "banking": true,
+                            "bonus": false,
+                            "status": "OPEN",
+                            "contract_name": "Toulouse",
+                            "bike_stands": 18,
+                            "available_bike_stands": 7,
+                            "available_bikes": 11,
+                            "last_update": 1517918376000
+                        }
+                    }
+                ]
+            </code></pre>
+
+        <h3 class="method">/api/stations/bank/boolean/:value <span>[GET]</span></h3>
+            <div class="link">Lien : <a href="https://github.com/peiofour/TrouveTonVeloServer/blob/d021890b419b7072617ba559418b125220560d0a/routes/api/stations.js#L34">github</a></div>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">:value</span> <span class="parameter_description">true | false</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les stations qui sont équipées ou non d'un terminal bancaire.</p>
+            <div class="description_title">Exemple :</div>
+            <p class="example">localhost:3000/api/stations/bank/boolean/false</p>
+            <div class="return_title">Retour : <span class="type">[JSON]</span></div>
+            <pre><code class="language-json">
+                [
+                    {
+                        "_id": "Nantes_10",
+                        "body": {
+                            "number": 10,
+                            "name": "00010- PICASSO",
+                            "address": "PICASSO - RUE PABLO PICASSO",
+                            "position": {
+                                "lat": 47.216369613307506,
+                                "lng": -1.534184544523239
+                            },
+                            "banking": false,
+                            "bonus": false,
+                            "status": "OPEN",
+                            "contract_name": "Nantes",
+                            "bike_stands": 28,
+                            "available_bike_stands": 9,
+                            "available_bikes": 19,
+                            "last_update": 1517926856000
+                        }
+                    },
+                    ...
+                    {
+                        "_id": "Dublin_54",
+                        "body": {
+                            "number": 54,
+                            "name": "CLONMEL STREET",
+                            "address": "Clonmel Street",
+                            "position": {
+                                "lat": 53.336021,
+                                "lng": -6.26298
+                            },
+                            "banking": false,
+                            "bonus": false,
+                            "status": "OPEN",
+                            "contract_name": "Dublin",
+                            "bike_stands": 33,
+                            "available_bike_stands": 25,
+                            "available_bikes": 8,
+                            "last_update": 1517926945000
+                        }
+                    }
+                ]
+            </code></pre>
+
+        <h3 class="method">/api/stations/bank/:city <span>[GET]</span></h3>
+            <div class="link">Lien : <a href="https://github.com/peiofour/TrouveTonVeloServer/blob/d021890b419b7072617ba559418b125220560d0a/routes/api/stations.js#L49">github</a></div>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">:city</span> <span class="parameter_description">Nom d'une ville, exemple : "toulouse"</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne les stations d'une ville donnée qui sont équipées d'un terminal bancaire.</p>
+            <div class="description_title">Exemple :</div>
+            <p class="example">localhost:3000/api/stations/bank/toulouse</p>
+            <div class="return_title">Retour : <span class="type">[JSON]</span></div>
+            <pre><code class="language-json">
+                [
+                    {
+                        "_id": "Toulouse_55",
+                        "body": {
+                            "number": 55,
+                            "name": "00055 - ST SERNIN G. ARNOULT",
+                            "address": "2 RUE GATIEN ARNOULT",
+                            "position": {
+                                "lat": 43.608951960496405,
+                                "lng": 1.441003598726198
+                            },
+                            "banking": true,
+                            "bonus": false,
+                            "status": "OPEN",
+                            "contract_name": "Toulouse",
+                            "bike_stands": 15,
+                            "available_bike_stands": 9,
+                            "available_bikes": 6,
+                            "last_update": 1517929166000
+                        }
+                    },
+                    ...
+                    {
+                        "_id": "Toulouse_242",
+                        "body": {
+                            "number": 242,
+                            "name": "00242 -  RAIMBAUD / COLETTE",
+                            "address": "RUE RAIMBAUD ANGLE RUE COLETTE",
+                            "position": {
+                                "lat": 43.633866178151905,
+                                "lng": 1.437493796200118
+                            },
+                            "banking": true,
+                            "bonus": false,
+                            "status": "OPEN",
+                            "contract_name": "Toulouse",
+                            "bike_stands": 16,
+                            "available_bike_stands": 12,
+                            "available_bikes": 4,
+                            "last_update": 1517928651000
+                        }
+                    }
+                ]
+            </code></pre>
+
+        <h3 class="method">/api/stations/historical/:what <span>[GET]</span></h3>
+            <div class="link">Lien : <a href="https://github.com/peiofour/TrouveTonVeloServer/blob/d021890b419b7072617ba559418b125220560d0a/routes/api/stations.js#L64">github</a></div>
+            <div class="params">Paramètres :</div>
+            <ul>
+                <li><span class="type">:what</span> <span class="parameter_description">year | month | day | hour</span></li>
+                <li><span class="type">year</span> <span class="parameter_description">Année, exemple : 2018</span></li>
+                <li><span class="type">month</span> <span class="parameter_description">Mois, exemple : 2</span></li>
+                <li><span class="type">day</span> <span class="parameter_description">Jour, exemple : 4</span></li>
+                <li><span class="type">hour</span> <span class="parameter_description">Heure, exemple : 18</span></li>
+            </ul>
+            <div class="description_title">Description :</div>
+            <p class="description_text">Retourne l'historique des stations sur une periode donnée.</p>
+            <div class="description_title">Exemple :</div>
+            <p class="example">localhost:3000/api/stations/historical/hour?year=2018&month=2&day=4&hour=18</p>
+            <div class="return_title">Retour : <span class="type">[JSON]</span></div>
+            <pre><code class="language-json">
+                [
+                    {
+                        "_id" : "5a774a21e524bb563c3235da",
+                        "stationId" : "Brisbane_122",
+                        "status" : "OPEN",
+                        "bike_stands" : 16,
+                        "available_bike_stands" : 7,
+                        "available_bikes" : 9,
+                        "date" : {
+                            "year" : 2018,
+                            "month" : 1,
+                            "day" : 4,
+                            "hour" : 18,
+                            "minute" : 0,
+                            "timestamp" : "2018-02-04T18:00:00.000Z"
+                        }
+                    },
+                    {
+                        "_id" : "5a774a21e524bb563c3235db",
+                        "stationId" : "Toulouse_55",
+                        "status" : "OPEN",
+                        "bike_stands" : 15,
+                        "available_bike_stands" : 7,
+                        "available_bikes" : 8,
+                        "date" : {
+                            "year" : 2018,
+                            "month" : 1,
+                            "day" : 4,
+                            "hour" : 18,
+                            "minute" : 0,
+                            "timestamp" : "2018-02-04T18:00:00.000Z"
+                        }
+                    },
+                    ...
+                    {
+                        "_id" : "5a774a21e524bb563c3235dc",
+                        "stationId" : "Bruxelles-Capitale_339",
+                        "status" : "OPEN",
+                        "bike_stands" : 22,
+                        "available_bike_stands" : 14,
+                        "available_bikes" : 7,
+                        "date" : {
+                            "year" : 2018,
+                            "month" : 1,
+                            "day" : 4,
+                            "hour" : 18,
+                            "minute" : 0,
+                            "timestamp" : "2018-02-04T18:00:00.000Z"
+                        }
+                    }
+                ]
+            </code></pre>
+    </div>
+</div>
